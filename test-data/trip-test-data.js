@@ -1,5 +1,15 @@
 export const testTrips = [
   {
+    "id": 33,
+    "userID": 6,
+    "destinationID": 36,
+    "travelers": 5,
+    "date": "2020/03/26",
+    "duration": 19,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
     "id": 93,
     "userID": 40,
     "destinationID": 47,
