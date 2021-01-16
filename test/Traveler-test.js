@@ -47,10 +47,10 @@ describe('a Traveler', () => {
     trip3.beAssigned(id, traveler.upcomingTrips);
     trip4.beAssigned(id, traveler.pendingTrips);
 
-    expect(traveler.returnTrips(traveler.pastTrips)).to.deep.equal([trip1]);
-    expect(traveler.returnTrips(traveler.presentTrips)).to.deep.equal([trip2]);
-    expect(traveler.returnTrips(traveler.upcomingTrips)).to.deep.equal([trip3]);
-    expect(traveler.returnTrips(traveler.pendingTrips)).to.deep.equal([trip4]);
+    expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
+    expect(traveler.returnPresentTrips()).to.deep.equal([trip2]);
+    expect(traveler.returnUpcomingTrips()).to.deep.equal([trip3]);
+    expect(traveler.returnPendingTrips()).to.deep.equal([trip4]);
   });
 
   it('should be able to say how long a list is', () => {
