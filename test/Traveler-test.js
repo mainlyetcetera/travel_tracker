@@ -62,4 +62,11 @@ describe('a Traveler', () => {
     expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
+
+  it('should be able to return the traveler\'s first name', () => {
+    const otherTraveler = new Traveler(traveler-test-data[0];
+
+    expect(traveler.returnFirstName()).to.eql('Morey');
+    expect(otherTraveler.returnFirstName()).to.eql('Ham');
+  });
 });
