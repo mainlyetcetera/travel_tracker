@@ -1,4 +1,4 @@
-export const testUsers = [
+export const testTravelers = [
   {
     "id": 1,
     "name": "Ham Leadbeater",
