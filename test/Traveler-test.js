@@ -52,4 +52,14 @@ describe('a Traveler', () => {
     expect(traveler.returnTrips(traveler.upcomingTrips)).to.deep.equal([trip3]);
     expect(traveler.returnTrips(traveler.pendingTrips)).to.deep.equal([trip4]);
   });
+
+  it('should be able to say how long a list is', () => {
+    const id = traveler.id;
+
+    trip1.beAssigned(id, traveler.pastTrips);
+    trip2.beAssigned(id, traveler.presentTrips);
+
+    expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
+    expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
+  });
 });
