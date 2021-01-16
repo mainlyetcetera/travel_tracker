@@ -69,4 +69,8 @@ describe('a Traveler', () => {
     expect(traveler.returnFirstName()).to.eql('Morey');
     expect(otherTraveler.returnFirstName()).to.eql('Ham');
   });
+
+  it('should return traveler type', () => {
+    expect(traveler.returnType()).to.eql('foodie');
+  });
 });
