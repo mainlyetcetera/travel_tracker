@@ -10,16 +10,16 @@ export const testDestination = [
   {
     "id": 26,
     "destination": "London, England",
-    "estimatedLodgingCostPerDay": 100,
-    "estimatedFlightCostPerPerson": 1000,
+    "estimatedLodgingCostPerDay": 100, // 3200
+    "estimatedFlightCostPerPerson": 1000, // 4000 total: 7200
     "image": "https://images.unsplash.com/photo-1549471156-52ee71691122?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "city with bridge under night sky"
   },
   {
     "id": 29,
     "destination": "Willemstad, Curaçao",
-    "estimatedLodgingCostPerDay": 80,
-    "estimatedFlightCostPerPerson": 1100,
+    "estimatedLodgingCostPerDay": 80, // 1280
+    "estimatedFlightCostPerPerson": 1100, // 2200 total: 3480
     "image": "https://images.unsplash.com/photo-1541748603027-cbfefa3a6c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80",
     "alt": "brightly colored buildings near body of water"
   },

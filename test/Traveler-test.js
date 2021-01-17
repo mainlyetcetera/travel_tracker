@@ -64,7 +64,7 @@ describe('a Traveler', () => {
   });
 
   it('should be able to return the traveler\'s first name', () => {
-    const otherTraveler = new Traveler(traveler-test-data[0];
+    const otherTraveler = new Traveler(traveler-test-data[0]);
 
     expect(traveler.returnFirstName()).to.eql('Morey');
     expect(otherTraveler.returnFirstName()).to.eql('Ham');
@@ -79,5 +79,19 @@ describe('a Traveler', () => {
     expect(traveler.tookThisYear(trip2)).to.eql(true);
   });
 
-  // it('should return total spent on trips'
+  it('should return total spent on trips this year', () => {
+    const id = traveler.id;
+
+    // flight cost per person twice to make round-trip
+    // lodging cost per day per person per duration
+
+    trip1.beAssigned(id, traveler.pastTrips); // too old
+    trip2.beAssigned(id, traveler.presentTrips); 
+    trip3.beAssigned(id, traveler.upcomingTrips);
+    trip4.beAssigned(id, traveler.pendingTrips); // pending
+    
+    expect(traveler.spentOnTrips()).to.eql(10680);
+    expect(traveler.spentOnAgent()).to.eql(1068);      
+    expect(traveler.spentThis()).to.eql(11728);  
+  });
 });
