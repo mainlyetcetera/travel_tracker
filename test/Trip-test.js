@@ -32,12 +32,12 @@ describe('a Trip', () => {
     expect(trip.returnBeginning()).to.eql('2018/03/26');
   });
 
-  it.skip('should return its end date', () => {
-    // the beginning date is included in the duration
+  it.only('should return its end date', () => {
+    // the beginning date is included in the duration    
     expect(trip.returnEnd()).to.eql('2018/04/13');
   });
 
-  it.only('should add itself to the appropriate list of the Traveler', () => {
+  it.skip('should add itself to the appropriate list of the Traveler', () => {
     // this method shouldn't need a user id to be passed as the traveler id is already present
     trip.beAssigned();
 
@@ -45,5 +45,5 @@ describe('a Trip', () => {
     expect(traveler.currentTrips).to.deep.eql([]);
     expect(traveler.upcomingTrips).to.deep.eql([]);
     expect(traveler.pendingTrips).to.deep.eql([]);
-  });
+  });  
 });

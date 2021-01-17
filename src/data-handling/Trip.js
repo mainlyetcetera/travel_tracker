@@ -18,5 +18,18 @@ export default class Trip {
     return this.startDate;
   }
 
+  returnDuration() {
+    return this.duration;
+  }
+
+  returnEnd() {
+    const format = 'YYYY/MM/DD';    
+    const startDate = moment(this.startDate, format);    
+    const endDate = startDate.add(this.duration - 1, "day");    
+    this.endDate = moment(endDate, format);
+    this.endDate = this.endDate.format(format);    
+    return this.endDate;    
+  }
+
   beAssigned() {};
 };
