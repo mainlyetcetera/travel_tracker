@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { testTrips } from '../test-data/trip-test-data.js';
 import { testTravelers } from '../test-data/traveler-test-data.js';
-import Trip from '../src/data-handling/Traveler.js';
-import Traveler from '../src/data-handling/Trip.js';
+import Traveler from '../src/data-handling/Traveler.js';
+import Trip from '../src/data-handling/Trip.js';
 
 describe('a Trip', () => {
   let trip, traveler;
@@ -22,18 +22,13 @@ describe('a Trip', () => {
     expect(trip.destinationId).to.eql(1);
     expect(trip.travelers).to.eql(5);
     expect(trip.startDate).to.eql('2018/03/26');
-    expect(trip.endDate).to.eql('undefined');
+    expect(trip.endDate).to.eql(undefined);
     expect(trip.duration).to.eql(19);
     expect(trip.status).to.eql('approved');
     expect(trip.suggestedActivities).to.be.an('Array');
   });
-
-  it('should be able to import trips', () => {
-    expect(testTrips).to.be.an('Array');
-    expect(testTravelers).to.be.an('Array');
-  });
-
-  it('should return its start date', () => {
+  
+  it.only('should return its start date', () => {
     expect(trip.returnBeginning()).to.eql('2018/03/26');
   });
 
