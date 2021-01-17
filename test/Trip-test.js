@@ -3,7 +3,7 @@ import { testTrips } from '../test-data/trip-test-data.js';
 import Trip from '../src/data-handling/Traveler.js';
 import Traveler from '../src/data-handling/Trip.js';
 
-describe.only('a Trip', () => {
+describe('a Trip', () => {
   let trip;
   beforeEach(() => {
     trip = new Trip(testTrips[0]);
@@ -15,5 +15,9 @@ describe.only('a Trip', () => {
 
   it('should be able to import trips', () => {
     expect(testTrips).to.be.an('Array');
+  });
+
+  it('should return its start date', () => {
+    expect(trip.returnBeginning()).to.eql('2018/03/26');
   });
 });

@@ -41,11 +41,12 @@ describe('a Traveler', () => {
 
   beforeEach(() => {
     id = traveler.id;
-
-    trip1.beAssigned(id, traveler.pastTrips);
-    trip2.beAssigned(id, traveler.currentTrips);
-    trip3.beAssigned(id, traveler.upcomingTrips);
-    trip4.beAssigned(id, traveler.pendingTrips);
+      
+    // the trips should know which category is approp. by date AND approved status
+    trip1.beAssigned(id);
+    trip2.beAssigned(id);
+    trip3.beAssigned(id);
+    trip4.beAssigned(id);
   });
 
   it('should be able to return the trips', () => {
