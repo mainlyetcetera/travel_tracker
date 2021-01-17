@@ -28,16 +28,16 @@ describe('a Trip', () => {
     expect(trip.suggestedActivities).to.be.an('Array');
   });
   
-  it.only('should return its start date', () => {
+  it('should return its start date', () => {
     expect(trip.returnBeginning()).to.eql('2018/03/26');
   });
 
-  it('should return its end date', () => {
+  it.skip('should return its end date', () => {
     // the beginning date is included in the duration
     expect(trip.returnEnd()).to.eql('2018/04/13');
   });
 
-  it('should add itself to the appropriate list of the Traveler', () => {
+  it.only('should add itself to the appropriate list of the Traveler', () => {
     // this method shouldn't need a user id to be passed as the traveler id is already present
     trip.beAssigned();
 
