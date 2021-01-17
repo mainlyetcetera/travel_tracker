@@ -73,4 +73,11 @@ describe('a Traveler', () => {
   it('should return traveler type', () => {
     expect(traveler.returnType()).to.eql('foodie');
   });
+
+  it('should be able to tell which trips it took in the last year', () => {
+    expect(traveler.tookThisYear(trip1)).to.eql(false);
+    expect(traveler.tookThisYear(trip2)).to.eql(true);
+  });
+
+  // it('should return total spent on trips'
 });
