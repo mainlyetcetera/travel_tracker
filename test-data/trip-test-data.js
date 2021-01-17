@@ -4,7 +4,7 @@ export const testTrips = [
     "userID": 6,
     "destinationID": 36,
     "travelers": 5,
-    "date": "2020/03/26",
+    "date": "2018/03/26",
     "duration": 19,
     "status": "approved",
     "suggestedActivities": []
