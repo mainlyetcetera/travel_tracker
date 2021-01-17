@@ -7,7 +7,7 @@ import Trip from '../src/data-handling/Trip.js';
 const expect = chai.expect;
 
 describe('a Traveler', () => {
-  let traveler, trip1, trip2, trip3, trip4, id;
+  let traveler, trip1, trip2, trip3, trip4;
 
   beforeEach(() => {
     traveler = new Traveler(testTravelers[testTravelers.length - 1]);        
@@ -39,14 +39,12 @@ describe('a Traveler', () => {
     expect(traveler.pendingTrips).to.be.an('Array');
   });
 
-  beforeEach(() => {
-    id = traveler.id;
-      
+  beforeEach(() => {      
     // the trips should know which category is approp. by date AND approved status
-    trip1.beAssigned(id);
-    trip2.beAssigned(id);
-    trip3.beAssigned(id);
-    trip4.beAssigned(id);
+    trip1.beAssigned();
+    trip2.beAssigned();
+    trip3.beAssigned();
+    trip4.beAssigned();
   });
 
   it('should be able to return the trips', () => {
