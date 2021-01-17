@@ -7,14 +7,14 @@ import Trip from '../src/data-handling/Trip.js';
 const expect = chai.expect;
 
 describe('a Traveler', () => {
-  let traveler, trip1, trip2, trip3, trip4;
+  let traveler, trip1, trip2, trip3, trip4, id;
 
   beforeEach(() => {
     traveler = new Traveler(testTravelers[testTravelers.length - 1]);        
     trip1 = new Trip(testTrips[0]);
     trip2 = new Trip(testTrips[1]);    
     trip3 = new Trip(testTrips[2]);
-    trip4 = new Trip(testTrips[3]);
+    trip4 = new Trip(testTrips[3]);    
   });
 
   it('should be an instance of Traveler', () => {
@@ -39,14 +39,16 @@ describe('a Traveler', () => {
     expect(traveler.pendingTrips).to.be.an('Array');
   });
 
-  it('should be able to return the trips', () => {
-    const id = traveler.id;
-    
+  beforeEach(() => {
+    id = traveler.id;
+
     trip1.beAssigned(id, traveler.pastTrips);
     trip2.beAssigned(id, traveler.currentTrips);
     trip3.beAssigned(id, traveler.upcomingTrips);
     trip4.beAssigned(id, traveler.pendingTrips);
+  });
 
+  it('should be able to return the trips', () => {
     expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
     expect(traveler.returnPresentTrips()).to.deep.equal([trip2]);
     expect(traveler.returnUpcomingTrips()).to.deep.equal([trip3]);
@@ -54,11 +56,6 @@ describe('a Traveler', () => {
   });
 
   it('should be able to say how long a list is', () => {
-    const id = traveler.id;
-
-    trip1.beAssigned(id, traveler.pastTrips);
-    trip2.beAssigned(id, traveler.presentTrips);
-
     expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
@@ -79,19 +76,24 @@ describe('a Traveler', () => {
     expect(traveler.tookThisYear(trip2)).to.eql(true);
   });
 
-  it('should return total spent on trips this year', () => {
-    const id = traveler.id;
+  it('should return trips not yet a year old AND approved', () => {
+    expect(traveler.isValid(traveler.pastTrips)).to.deep.eql([]);
+    expect(traveler.isValid(traveler.currentTrips)).to.deep.eql([trip2]);
+    expect(traveler.isValid(traveler.upcomingTrips)).to.deep.eql([trip3]);
+    expect(traveler.isValid(traveler.pendingTrips)).to.deep.eql([]);
+  });
 
+  it('should return total spent on trips this year', () => {
     // flight cost per person twice to make round-trip
     // lodging cost per day per person per duration
 
-    trip1.beAssigned(id, traveler.pastTrips); // too old
-    trip2.beAssigned(id, traveler.presentTrips); 
-    trip3.beAssigned(id, traveler.upcomingTrips);
-    trip4.beAssigned(id, traveler.pendingTrips); // pending
+    // first assignment is too old
+    // last assignment is pending
     
     expect(traveler.spentOnTrips()).to.eql(10680);
     expect(traveler.spentOnAgent()).to.eql(1068);      
     expect(traveler.spentThis()).to.eql(11728);  
   });
+
+
 });
