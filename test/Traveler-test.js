@@ -47,6 +47,10 @@ describe('a Traveler', () => {
     expect(traveler.returnPendingTrips()).to.deep.equal([trip4]);
   });
 
+  it.only('should test whether moment works', () => {
+    expect(traveler.test()).to.eql(true);
+  });
+
   it('should be able to say how long a list is', () => {
     expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
