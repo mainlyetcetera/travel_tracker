@@ -16,6 +16,18 @@ describe('a Trip', () => {
     expect(trip).to.be.an.instanceof(Trip);
   });
 
+  it('should have an appropriate constructor', () => {
+    expect(trip.tripId).to.eql(33);
+    expect(trip.userId).to.eql(50);
+    expect(trip.destinationId).to.eql(1);
+    expect(trip.travelers).to.eql(5);
+    expect(trip.startDate).to.eql('2018/03/26');
+    expect(trip.endDate).to.eql('undefined');
+    expect(trip.duration).to.eql(19);
+    expect(trip.status).to.eql('approved');
+    expect(trip.suggestedActivities).to.be.an('Array');
+  });
+
   it('should be able to import trips', () => {
     expect(testTrips).to.be.an('Array');
     expect(testTravelers).to.be.an('Array');
