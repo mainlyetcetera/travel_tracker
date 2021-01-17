@@ -32,13 +32,13 @@ describe('a Traveler', () => {
     expect(testTrips).to.be.an('Array');
   });
 
-  it.only('should have an appropriate constructor', () => {
+  it('should have an appropriate constructor', () => {
     expect(traveler.name).to.eql('Morey Flanders');
     expect(traveler.id).to.eql(50);
     expect(traveler.type).to.eql('foodie');
   });
 
-  it('should have a place to store various types of trips', () => {
+  it.only('should have a place to store various types of trips', () => {
     expect(traveler.pastTrips).to.be.an('Array');
     expect(traveler.currentTrips).to.be.an('Array');
     expect(traveler.upcomingTrips).to.be.an('Array');

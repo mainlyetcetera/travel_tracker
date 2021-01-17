@@ -3,6 +3,10 @@ export default class Traveler {
     this.name = data.name;
     this.id = data.id;
     this.type = data.travelerType;
+    this.pastTrips = [];
+    this.currentTrips = [];
+    this.upcomingTrips = [];
+    this.pendingTrips = [];
   }
 };
   
