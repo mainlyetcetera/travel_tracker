@@ -94,6 +94,4 @@ describe('a Traveler', () => {
     expect(traveler.spentOnAgent()).to.eql(1068);      
     expect(traveler.spentThis()).to.eql(11728);  
   });
-
-
 });
