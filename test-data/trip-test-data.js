@@ -9,7 +9,6 @@ export const testTrips = [
     "status": "approved",
     "suggestedActivities": []
   },
-
   {
     "id": 93,
     "userID": 40,
@@ -29,8 +28,7 @@ export const testTrips = [
     "duration": 16,
     "status": "approved",
     "suggestedActivities": []
-  },
-  
+  },  
   {
     "id": 199,
     "userID": 45,
