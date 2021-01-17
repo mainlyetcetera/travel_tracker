@@ -1,3 +1,6 @@
+import moment from 'moment';
+moment().format();
+
 export default class Traveler {
   constructor(data) {
     this.name = data.name;

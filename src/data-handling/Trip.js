@@ -1,3 +1,6 @@
+import moment from 'moment';
+moment().format();
+
 export default class Trip {
   constructor(data) {
     this.tripId = data.id;
@@ -11,7 +14,7 @@ export default class Trip {
     this.suggestedActivities = data.suggestedActivities;
   };
 
-  returnBeginning() {
+  returnBeginning() {    
     return this.startDate;
   }
 
