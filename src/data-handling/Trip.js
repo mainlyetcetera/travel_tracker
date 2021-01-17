@@ -1,1 +1,5 @@
-export default class Trip {};
+export default class Trip {
+  constructor() {};
+
+  beAssigned() {};
+};

@@ -15,6 +15,12 @@ describe('a Traveler', () => {
     trip2 = new Trip(testTrips[1]);    
     trip3 = new Trip(testTrips[2]);
     trip4 = new Trip(testTrips[3]);    
+
+    // the trips should know which category is approp. by date AND approved status
+    trip1.beAssigned();
+    trip2.beAssigned();
+    trip3.beAssigned();
+    trip4.beAssigned();
   });
 
   it('should be an instance of Traveler', () => {
@@ -26,7 +32,7 @@ describe('a Traveler', () => {
     expect(testTrips).to.be.an('Array');
   });
 
-  it('should have an appropriate constructor', () => {
+  it.only('should have an appropriate constructor', () => {
     expect(traveler.name).to.eql('Morey Flanders');
     expect(traveler.id).to.eql(50);
     expect(traveler.type).to.eql('foodie');
@@ -37,15 +43,7 @@ describe('a Traveler', () => {
     expect(traveler.currentTrips).to.be.an('Array');
     expect(traveler.upcomingTrips).to.be.an('Array');
     expect(traveler.pendingTrips).to.be.an('Array');
-  });
-
-  beforeEach(() => {      
-    // the trips should know which category is approp. by date AND approved status
-    trip1.beAssigned();
-    trip2.beAssigned();
-    trip3.beAssigned();
-    trip4.beAssigned();
-  });
+  });  
 
   it('should be able to return the trips', () => {
     expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
