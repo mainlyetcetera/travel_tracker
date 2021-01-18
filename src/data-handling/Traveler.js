@@ -1,6 +1,8 @@
 import moment from 'moment';
 moment().format();
 
+import { format } from '../../utils/format.js';
+
 export default class Traveler {
   constructor(data) {
     this.name = data.name;
@@ -38,6 +40,14 @@ export default class Traveler {
 
   returnType() {
     return this.type;
+  }
+
+  tookThisYear(trip) {      
+    const yearBefore = moment().subtract(1, 'year');    
+    const isWithinYear = moment(trip.returnBeginning(), format)
+      .isAfter(yearBefore);
+
+    return trip.approved() && isWithinYear ? true : false;
   }
 
   test() {

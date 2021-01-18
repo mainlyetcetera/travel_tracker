@@ -62,11 +62,11 @@ describe.only('a Traveler', () => {
     expect(otherTraveler.returnFirstName()).to.eql('Ham');
   });
 
-  it.only('should return traveler type', () => {
+  it('should return traveler type', () => {
     expect(traveler.returnType()).to.eql('foodie');
   });
 
-  it('should be able to tell which trips it took in the last year', () => {
+  it.only('should be able to tell which trips it took in the last year', () => {
     expect(traveler.tookThisYear(trip1)).to.eql(false);
     expect(traveler.tookThisYear(trip2)).to.eql(true);
   });
