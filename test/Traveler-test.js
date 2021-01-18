@@ -71,11 +71,16 @@ describe.only('a Traveler', () => {
     expect(traveler.tookThisYear(trip2)).to.eql(true);
   });
 
-  it.only('should return trips not yet a year old AND approved', () => {
+  it('should return trips not yet a year old AND approved', () => {
     expect(traveler.returnValidTrips(traveler.pastTrips)).to.deep.eql([]);
     expect(traveler.returnValidTrips(traveler.currentTrips)).to.deep.eql([trip2]);
     expect(traveler.returnValidTrips(traveler.upcomingTrips)).to.deep.eql([trip3]);
     expect(traveler.returnValidTrips(traveler.pendingTrips)).to.deep.eql([]);
+  });
+
+  it.only('should return 10% of a given total', () => {
+    expect(traveler.spentOnAgent(100)).to.eql(10);
+    expect(traveler.spentOnAgent(50000)).to.eql(5000);
   });
 
   it('should return total spent on trips this year', () => {
@@ -84,9 +89,11 @@ describe.only('a Traveler', () => {
 
     // first assignment is too old
     // last assignment is pending
+
+    const spentOnTrips = traveler.spentOnTrips();
     
-    expect(traveler.spentOnTrips()).to.eql(10680);
-    expect(traveler.spentOnAgent()).to.eql(1068);      
+    expect(spentOnTrips).to.eql(10680);
+    expect(traveler.spentOnAgent(spentOnTrips)).to.eql(1068);      
     expect(traveler.spentThis()).to.eql(11728);  
   });
 });
