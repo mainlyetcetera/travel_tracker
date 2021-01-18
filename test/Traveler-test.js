@@ -55,14 +55,14 @@ describe.only('a Traveler', () => {
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
 
-  it.only('should be able to return the traveler\'s first name', () => {
+  it('should be able to return the traveler\'s first name', () => {
     const otherTraveler = new Traveler(testTravelers[0]);
 
     expect(traveler.returnFirstName()).to.eql('Morey');
     expect(otherTraveler.returnFirstName()).to.eql('Ham');
   });
 
-  it('should return traveler type', () => {
+  it.only('should return traveler type', () => {
     expect(traveler.returnType()).to.eql('foodie');
   });
 
