@@ -43,6 +43,10 @@ export default class Trip {
     return this.status;
   }
 
+  approved() {
+    return this.returnStatus() === 'approved' ? true : false;
+  }
+
   beAssigned(traveler) {    
     const start = moment(this.returnBeginning());
     const end = moment(this.returnEnd());    

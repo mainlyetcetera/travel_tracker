@@ -61,7 +61,16 @@ describe.only('a Trip', () => {
 
   it('should return its approval status', () => {
     expect(trip.returnStatus()).to.eql('approved');
-  })
+  });
+
+  it.only('should return true or false based on approval status', () => {
+    const trip1 = new Trip(testTrips[3]);
+    const approved = trip.returnStatus();
+    const pending = trip1.returnStatus();
+
+    expect(trip.approved()).to.eql(true);
+    expect(trip1.approved()).to.eql(false);
+  });
 
   it('should add itself to the appropriate list of the Traveler', () => {    
     const trip1 = new Trip(testTrips[3]);
