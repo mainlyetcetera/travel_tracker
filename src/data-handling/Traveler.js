@@ -54,6 +54,10 @@ export default class Traveler {
     return listOfTrips.filter(trip => this.tookThisYear(trip));
   }
 
+  spentOnAgent(total) {
+    return total * .1;
+  }
+
   test() {
     // const format = 'YYYY/MM/DD';
     const m1 = moment('2010/10/20', format);
