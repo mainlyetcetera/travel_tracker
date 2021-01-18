@@ -14,7 +14,7 @@ export const testTrips = [
     "userID": 50,
     "destinationID": 26,
     "travelers": 2,
-    "date": "2019/12/08",
+    "date": "2021/01/15",
     "duration": 16,
     "status": "approved",
     "suggestedActivities": []
@@ -24,7 +24,7 @@ export const testTrips = [
     "userID": 50,
     "destinationID": 29,
     "travelers": 1,
-    "date": "2020/03/26",
+    "date": "2021/03/26",
     "duration": 16,
     "status": "approved",
     "suggestedActivities": []

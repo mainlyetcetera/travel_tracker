@@ -43,17 +43,18 @@ export default class Trip {
     return this.status;
   }
 
-  beAssigned() {
-    // need to check if it's not approved
-      // add to user's pending
-    // need to see, if it's approved, where the dates fall
-      // if curr date between start and end date
-        // put in current trips of user matching user id
-      // otherwise curr date after end date
-        // put in past trips of user matching user id
-
-    if (this.returnStatus() !== 'approved') {
-
+  beAssigned(traveler) {    
+    const start = moment(this.returnBeginning());
+    const end = moment(this.returnEnd());    
+    const currentDate = moment();  
+    if (this.status === 'pending') {
+      traveler.pendingTrips.push(this);
+    } else if (this.status === 'approved' && currentDate.isAfter(end)) {
+      traveler.pastTrips.push(this);
+    } else if (this.status === 'approved' && currentDate.isBetween(start, end)) {
+      traveler.currentTrips.push(this);
+    } else if (this.status === 'approved' && currentDate.isBefore(start)) {
+      traveler.upcomingTrips.push(this);
     }
-  };
+  }
 };
