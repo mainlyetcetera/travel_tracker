@@ -2,6 +2,7 @@ import moment from 'moment';
 moment().format();
 
 import { format } from '../../utils/format.js';
+import { testDestinations } from '../../test-data/destinations-test-data.js';
 
 export default class Traveler {
   constructor(data) {
@@ -57,6 +58,31 @@ export default class Traveler {
   spentOnAgent(total) {
     return total * .1;
   }
+
+  spentOnTrips() {
+    // find valid trips from each list (not pending, never valid)
+    // calculate totals based on flights and lodging
+    // total together
+    // return total
+    console.log("destinations:", testDestinations);
+    const validPast = this.returnValidTrips(this.returnPastTrips());
+    const validCurrent = this.returnValidTrips(this.returnCurrentTrips());
+    const validUpcoming = this.returnValidTrips(this.returnUpcomingTrips());
+    const valid = [...validPast, ...validCurrent, ...validUpcoming];  
+    console.log('valid trips', valid);  
+    
+    return valid.length > 0 ? valid.reduce((total, trip) => {
+      const destination = trip.findCorrespondingDestination(testDestinations);
+      const estFlightCost = destination.estimatedFlightCostPerPerson;
+      const estLodgingCost = destination.estimatedLodgingCostPerDay;
+      total += (estFlightCost * 2 * trip.travelers);
+      total += (estLodgingCost * trip.travelers * trip.returnDuration());
+      console.log('total', total);
+
+      return total;
+    }, 0) : 0;
+  }
+
 
   test() {
     // const format = 'YYYY/MM/DD';
