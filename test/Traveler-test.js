@@ -66,16 +66,16 @@ describe.only('a Traveler', () => {
     expect(traveler.returnType()).to.eql('foodie');
   });
 
-  it.only('should be able to tell which trips it took in the last year', () => {
+  it('should be able to tell which trips it took in the last year', () => {
     expect(traveler.tookThisYear(trip1)).to.eql(false);
     expect(traveler.tookThisYear(trip2)).to.eql(true);
   });
 
-  it('should return trips not yet a year old AND approved', () => {
-    expect(traveler.isValid(traveler.pastTrips)).to.deep.eql([]);
-    expect(traveler.isValid(traveler.currentTrips)).to.deep.eql([trip2]);
-    expect(traveler.isValid(traveler.upcomingTrips)).to.deep.eql([trip3]);
-    expect(traveler.isValid(traveler.pendingTrips)).to.deep.eql([]);
+  it.only('should return trips not yet a year old AND approved', () => {
+    expect(traveler.returnValidTrips(traveler.pastTrips)).to.deep.eql([]);
+    expect(traveler.returnValidTrips(traveler.currentTrips)).to.deep.eql([trip2]);
+    expect(traveler.returnValidTrips(traveler.upcomingTrips)).to.deep.eql([trip3]);
+    expect(traveler.returnValidTrips(traveler.pendingTrips)).to.deep.eql([]);
   });
 
   it('should return total spent on trips this year', () => {

@@ -51,7 +51,7 @@ export default class Traveler {
   }
 
   test() {
-    const format = 'YYYY/MM/DD';
+    // const format = 'YYYY/MM/DD';
     const m1 = moment('2010/10/20', format);
     const m2 = moment('2010/10/19', format);
     const m3 = moment('2010/10/24', format);
