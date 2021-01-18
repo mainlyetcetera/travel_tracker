@@ -4,6 +4,7 @@ import { testTravelers } from '../test-data/traveler-test-data.js';
 import { testDestinations } from '../test-data/destinations-test-data.js';
 import Traveler from '../src/data-handling/Traveler.js';
 import Trip from '../src/data-handling/Trip.js';
+import moment from 'moment';
 
 describe.only('a Trip', () => {
   let trip, traveler, destination;
@@ -63,7 +64,7 @@ describe.only('a Trip', () => {
     expect(trip.returnStatus()).to.eql('approved');
   });
 
-  it.only('should return true or false based on approval status', () => {
+  it('should return true or false based on approval status', () => {
     const trip1 = new Trip(testTrips[3]);
     const approved = trip.returnStatus();
     const pending = trip1.returnStatus();
@@ -72,7 +73,17 @@ describe.only('a Trip', () => {
     expect(trip1.approved()).to.eql(false);
   });
 
-  it.only('should add itself to the appropriate list of the Traveler', () => {    
+  it.only('should set up dates', () => {
+    const dates = {
+      start: moment(trip.returnBeginning()),
+      end: moment(trip.returnEnd()),
+      current: moment()
+    }
+
+    expect(trip.setupDates()).to.deep.eql(dates);
+  });
+
+  it('should add itself to the appropriate list of the Traveler', () => {    
     const trip1 = new Trip(testTrips[3]);
     const trip2 = new Trip(testTrips[1]);
     const trip3 = new Trip(testTrips[2]);
