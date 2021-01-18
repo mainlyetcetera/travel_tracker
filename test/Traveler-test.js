@@ -39,7 +39,7 @@ describe.only('a Traveler', () => {
     expect(traveler.pendingTrips).to.be.an('Array');
   });  
 
-  it.only('should be able to return the trips', () => {
+  it('should be able to return the trips', () => {
     expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
     expect(traveler.returnCurrentTrips()).to.deep.equal([trip2]);
     expect(traveler.returnUpcomingTrips()).to.deep.equal([trip3]);
@@ -50,8 +50,8 @@ describe.only('a Traveler', () => {
     expect(traveler.test()).to.eql(true);
   });
 
-  it('should be able to say how long a list is', () => {
-    expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
+  it.only('should be able to say how long a list is', () => {
+    expect(traveler.countTrips(traveler.currentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
 
