@@ -72,7 +72,7 @@ describe.only('a Trip', () => {
     expect(trip1.approved()).to.eql(false);
   });
 
-  it('should add itself to the appropriate list of the Traveler', () => {    
+  it.only('should add itself to the appropriate list of the Traveler', () => {    
     const trip1 = new Trip(testTrips[3]);
     const trip2 = new Trip(testTrips[1]);
     const trip3 = new Trip(testTrips[2]);

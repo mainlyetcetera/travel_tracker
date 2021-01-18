@@ -51,13 +51,13 @@ export default class Trip {
     const start = moment(this.returnBeginning());
     const end = moment(this.returnEnd());    
     const currentDate = moment();  
-    if (this.status === 'pending') {
+    if (!this.approved()) {
       traveler.pendingTrips.push(this);
-    } else if (this.status === 'approved' && currentDate.isAfter(end)) {
+    } else if (this.approved() && currentDate.isAfter(end)) {
       traveler.pastTrips.push(this);
-    } else if (this.status === 'approved' && currentDate.isBetween(start, end)) {
+    } else if (this.approved() && currentDate.isBetween(start, end)) {
       traveler.currentTrips.push(this);
-    } else if (this.status === 'approved' && currentDate.isBefore(start)) {
+    } else if (this.approved() && currentDate.isBefore(start)) {
       traveler.upcomingTrips.push(this);
     }
   }
