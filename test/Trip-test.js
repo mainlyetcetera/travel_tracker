@@ -27,17 +27,27 @@ describe('a Trip', () => {
     expect(trip.status).to.eql('approved');
     expect(trip.suggestedActivities).to.be.an('Array');
   });
+
+  it('should find its corresponding Traveler', () => {    
+    const listOfTravelers = testTravelers.map(each => new Traveler(each));
+    
+    expect(trip.findCorrespondingTraveler(listOfTravelers)).to.deep.eql(traveler);
+  });
   
   it('should return its start date', () => {
     expect(trip.returnBeginning()).to.eql('2018/03/26');
   });
 
-  it.only('should return its end date', () => {
+  it('should return its end date', () => {
     // the beginning date is included in the duration    
     expect(trip.returnEnd()).to.eql('2018/04/13');
   });
 
-  it.skip('should add itself to the appropriate list of the Traveler', () => {
+  it('should return its approval status', () => {
+    expect(trip.returnStatus()).to.eql('approved');
+  })
+
+  it('should add itself to the appropriate list of the Traveler', () => {
     // this method shouldn't need a user id to be passed as the traveler id is already present
     trip.beAssigned();
 

@@ -47,7 +47,7 @@ describe('a Traveler', () => {
     expect(traveler.returnPendingTrips()).to.deep.equal([trip4]);
   });
 
-  it.only('should test whether moment works', () => {
+  it('should test whether moment works', () => {
     expect(traveler.test()).to.eql(true);
   });
 

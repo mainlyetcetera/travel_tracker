@@ -14,6 +14,10 @@ export default class Trip {
     this.suggestedActivities = data.suggestedActivities;
   };
 
+  findCorrespondingTraveler(list) {    
+    return list.find(traveler => traveler.id === this.userId);    
+  }
+
   returnBeginning() {    
     return this.startDate;
   }
@@ -31,5 +35,21 @@ export default class Trip {
     return this.endDate;    
   }
 
-  beAssigned() {};
+  returnStatus() {
+    return this.status;
+  }
+
+  beAssigned() {
+    // need to check if it's not approved
+      // add to user's pending
+    // need to see, if it's approved, where the dates fall
+      // if curr date between start and end date
+        // put in current trips of user matching user id
+      // otherwise curr date after end date
+        // put in past trips of user matching user id
+
+    if (this.returnStatus() !== 'approved') {
+
+    }
+  };
 };
