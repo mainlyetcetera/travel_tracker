@@ -78,9 +78,13 @@ describe.only('a Traveler', () => {
     expect(traveler.returnValidTrips(traveler.pendingTrips)).to.deep.eql([]);
   });
 
-  it.only('should return 10% of a given total', () => {
+  it('should return 10% of a given total', () => {
     expect(traveler.spentOnAgent(100)).to.eql(10);
     expect(traveler.spentOnAgent(50000)).to.eql(5000);
+  });
+
+  it.only('should return costs of all valid trips', () => {
+    expect(traveler.spentOnTrips()).to.eql(10680);
   });
 
   it('should return total spent on trips this year', () => {
@@ -94,6 +98,6 @@ describe.only('a Traveler', () => {
     
     expect(spentOnTrips).to.eql(10680);
     expect(traveler.spentOnAgent(spentOnTrips)).to.eql(1068);      
-    expect(traveler.spentThis()).to.eql(11728);  
+    expect(traveler.spentInTotal()).to.eql(11728);  
   });
 });
