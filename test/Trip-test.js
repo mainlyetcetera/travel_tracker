@@ -1,15 +1,24 @@
 import { expect } from 'chai';
 import { testTrips } from '../test-data/trip-test-data.js';
 import { testTravelers } from '../test-data/traveler-test-data.js';
+import { testDestinations } from '../test-data/destinations-test-data.js';
 import Traveler from '../src/data-handling/Traveler.js';
 import Trip from '../src/data-handling/Trip.js';
 
-describe('a Trip', () => {
-  let trip, traveler;
+describe.only('a Trip', () => {
+  let trip, traveler, destination;
 
   beforeEach(() => {
     trip = new Trip(testTrips[0]);
     traveler = new Traveler(testTravelers[testTravelers.length - 1]);
+    destination = {
+      "id": 1,
+      "destination": "Lima, Peru",
+      "estimatedLodgingCostPerDay": 70,
+      "estimatedFlightCostPerPerson": 400,
+      "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+      "alt": "overview of city buildings with a clear sky"
+    }
   });
 
   it('should be an instance of Trip', () => {
@@ -30,8 +39,15 @@ describe('a Trip', () => {
 
   it('should find its corresponding Traveler', () => {    
     const listOfTravelers = testTravelers.map(each => new Traveler(each));
+    const result = trip.findCorrespondingTraveler(listOfTravelers);
     
-    expect(trip.findCorrespondingTraveler(listOfTravelers)).to.deep.eql(traveler);
+    expect(result).to.deep.eql(traveler);
+  });
+
+  it('should find its corresponding destination', () => {
+    const result = trip.findCorrespondingDestination(testDestinations);
+
+    expect(result).to.deep.eql(destination);
   });
   
   it('should return its start date', () => {

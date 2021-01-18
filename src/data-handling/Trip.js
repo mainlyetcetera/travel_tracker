@@ -18,6 +18,10 @@ export default class Trip {
     return list.find(traveler => traveler.id === this.userId);    
   }
 
+  findCorrespondingDestination(list) {
+    return list.find(destination => destination.id === this.destinationId);
+  }
+
   returnBeginning() {    
     return this.startDate;
   }
