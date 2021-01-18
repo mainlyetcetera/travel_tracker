@@ -72,10 +72,15 @@ describe('a Traveler', () => {
   });
 
   it('should return trips not yet a year old AND approved', () => {
-    expect(traveler.returnValidTrips(traveler.pastTrips)).to.deep.eql([]);
-    expect(traveler.returnValidTrips(traveler.currentTrips)).to.deep.eql([trip2]);
-    expect(traveler.returnValidTrips(traveler.upcomingTrips)).to.deep.eql([trip3]);
-    expect(traveler.returnValidTrips(traveler.pendingTrips)).to.deep.eql([]);
+    const pastTrips = traveler.returnValidTrips(traveler.pastTrips);
+    const currentTrips = traveler.returnValidTrips(traveler.currentTrips);
+    const upcomingTrips = traveler.returnValidTrips(traveler.upcomingTrips);
+    const pendingTrips = traveler.returnValidTrips(traveler.pendingTrips);
+
+    expect(pastTrips).to.deep.eql([]);
+    expect(currentTrips).to.deep.eql([trip2]);
+    expect(upcomingTrips).to.deep.eql([trip3]);
+    expect(pendingTrips).to.deep.eql([]);
   });
 
   it('should return 10% of a given total', () => {

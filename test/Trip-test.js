@@ -67,9 +67,7 @@ describe('a Trip', () => {
   });
 
   it('should return true or false based on approval status', () => {
-    trip1 = new Trip(testTrips[3]);
-    const approved = trip.returnStatus();
-    const pending = trip1.returnStatus();
+    trip1 = new Trip(testTrips[3]);    
 
     expect(trip.approved()).to.eql(true);
     expect(trip1.approved()).to.eql(false);
