@@ -6,7 +6,7 @@ import Trip from '../src/data-handling/Trip.js';
 
 const expect = chai.expect;
 
-describe.only('a Traveler', () => {
+describe('a Traveler', () => {
   let traveler, trip1, trip2, trip3, trip4;
 
   beforeEach(() => {
@@ -87,7 +87,7 @@ describe.only('a Traveler', () => {
     expect(traveler.spentOnTrips()).to.eql(10680);
   });
 
-  it.only('should return total spent on trips this year', () => {
+  it('should return total spent on trips this year', () => {
     // flight cost per person twice to make round-trip
     // lodging cost per day per person per duration
 
