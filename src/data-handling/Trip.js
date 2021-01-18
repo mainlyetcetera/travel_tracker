@@ -49,23 +49,21 @@ export default class Trip {
 
   setupDates() {
     return {
-      start: moment(this.returnBeginning()),
-      end: moment(this.returnEnd()),
-      current: moment()
+      st: moment(this.returnBeginning()),
+      ed: moment(this.returnEnd()),
+      curr: moment()
     }
   }
 
   beAssigned(traveler) {    
-    const start = moment(this.returnBeginning());
-    const end = moment(this.returnEnd());    
-    const currentDate = moment();  
+    const dates = this.setupDates();
     if (!this.approved()) {
       traveler.pendingTrips.push(this);
-    } else if (this.approved() && currentDate.isAfter(end)) {
+    } else if (this.approved() && dates.curr.isAfter(dates.ed)) {
       traveler.pastTrips.push(this);
-    } else if (this.approved() && currentDate.isBetween(start, end)) {
+    } else if (this.approved() && dates.curr.isBetween(dates.st, dates.ed)) {
       traveler.currentTrips.push(this);
-    } else if (this.approved() && currentDate.isBefore(start)) {
+    } else if (this.approved() && dates.curr.isBefore(dates.st)) {
       traveler.upcomingTrips.push(this);
     }
   }

@@ -5,13 +5,15 @@ import { testDestinations } from '../test-data/destinations-test-data.js';
 import Traveler from '../src/data-handling/Traveler.js';
 import Trip from '../src/data-handling/Trip.js';
 import moment from 'moment';
+moment().format();
 
-describe.only('a Trip', () => {
-  let trip, traveler, destination;
+describe('a Trip', () => {
+  let trip, trip1, traveler, destination;
 
   beforeEach(() => {
     trip = new Trip(testTrips[0]);    
-    traveler = new Traveler(testTravelers[testTravelers.length - 1]);
+    trip1 = new Trip(testTrips[3]);
+    traveler = new Traveler(testTravelers[testTravelers.length - 1]);    
     destination = {
       "id": 1,
       "destination": "Lima, Peru",
@@ -65,7 +67,7 @@ describe.only('a Trip', () => {
   });
 
   it('should return true or false based on approval status', () => {
-    const trip1 = new Trip(testTrips[3]);
+    trip1 = new Trip(testTrips[3]);
     const approved = trip.returnStatus();
     const pending = trip1.returnStatus();
 
@@ -73,20 +75,20 @@ describe.only('a Trip', () => {
     expect(trip1.approved()).to.eql(false);
   });
 
-  it.only('should set up dates', () => {
+  it('should set up dates', () => {
     const dates = {
-      start: moment(trip.returnBeginning()),
-      end: moment(trip.returnEnd()),
-      current: moment()
+      st: moment(trip.returnBeginning()),
+      ed: moment(trip.returnEnd()),
+      curr: moment()
     }
 
     expect(trip.setupDates()).to.deep.eql(dates);
   });
 
   it('should add itself to the appropriate list of the Traveler', () => {    
-    const trip1 = new Trip(testTrips[3]);
     const trip2 = new Trip(testTrips[1]);
     const trip3 = new Trip(testTrips[2]);
+    trip1 = new Trip(testTrips[3]);    
     
     trip.beAssigned(traveler);
     trip1.beAssigned(traveler);
