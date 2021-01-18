@@ -24,7 +24,8 @@ const initiateData = () => {
       traveler = new Traveler(data[0].travelers[index]);
       trips = data[1].trips.map(trip => new Trip(trip));
       destinations = data[2].destinations;      
-    });
+    })
+    .catch(err => console.log(err));
 }
 
 const getRandomIndex = list => Math.floor(Math.random() * list.length);
