@@ -15,12 +15,11 @@ describe('a Traveler', () => {
     trip2 = new Trip(testTrips[1]);    
     trip3 = new Trip(testTrips[2]);
     trip4 = new Trip(testTrips[3]);    
-
-    // the trips should know which category is approp. by date AND approved status
-    trip1.beAssigned();
-    trip2.beAssigned();
-    trip3.beAssigned();
-    trip4.beAssigned();
+    
+    trip1.beAssigned(traveler);
+    trip2.beAssigned(traveler);
+    trip3.beAssigned(traveler);
+    trip4.beAssigned(traveler);
   });
 
   it('should be an instance of Traveler', () => {
@@ -42,7 +41,7 @@ describe('a Traveler', () => {
 
   it('should be able to return the trips', () => {
     expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
-    expect(traveler.returnPresentTrips()).to.deep.equal([trip2]);
+    expect(traveler.returnCurrentTrips()).to.deep.equal([trip2]);
     expect(traveler.returnUpcomingTrips()).to.deep.equal([trip3]);
     expect(traveler.returnPendingTrips()).to.deep.equal([trip4]);
   });
@@ -52,12 +51,12 @@ describe('a Traveler', () => {
   });
 
   it('should be able to say how long a list is', () => {
-    expect(traveler.countTrips(traveler.presentTrips)).to.eql(1);
+    expect(traveler.countTrips(traveler.currentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
 
   it('should be able to return the traveler\'s first name', () => {
-    const otherTraveler = new Traveler(traveler-test-data[0]);
+    const otherTraveler = new Traveler(testTravelers[0]);
 
     expect(traveler.returnFirstName()).to.eql('Morey');
     expect(otherTraveler.returnFirstName()).to.eql('Ham');
@@ -73,21 +72,34 @@ describe('a Traveler', () => {
   });
 
   it('should return trips not yet a year old AND approved', () => {
-    expect(traveler.isValid(traveler.pastTrips)).to.deep.eql([]);
-    expect(traveler.isValid(traveler.currentTrips)).to.deep.eql([trip2]);
-    expect(traveler.isValid(traveler.upcomingTrips)).to.deep.eql([trip3]);
-    expect(traveler.isValid(traveler.pendingTrips)).to.deep.eql([]);
+    const pastTrips = traveler.returnValidTrips(traveler.pastTrips);
+    const currentTrips = traveler.returnValidTrips(traveler.currentTrips);
+    const upcomingTrips = traveler.returnValidTrips(traveler.upcomingTrips);
+    const pendingTrips = traveler.returnValidTrips(traveler.pendingTrips);
+
+    expect(pastTrips).to.deep.eql([]);
+    expect(currentTrips).to.deep.eql([trip2]);
+    expect(upcomingTrips).to.deep.eql([trip3]);
+    expect(pendingTrips).to.deep.eql([]);
+  });
+
+  it('should return 10% of a given total', () => {
+    expect(traveler.spentOnAgent(100)).to.eql(10);
+    expect(traveler.spentOnAgent(50000)).to.eql(5000);
+  });
+
+  it('should return costs of all valid trips', () => {
+    expect(traveler.spentOnTrips()).to.eql(10680);
   });
 
   it('should return total spent on trips this year', () => {
     // flight cost per person twice to make round-trip
     // lodging cost per day per person per duration
 
-    // first assignment is too old
-    // last assignment is pending
+    const spentOnTrips = traveler.spentOnTrips();
     
-    expect(traveler.spentOnTrips()).to.eql(10680);
-    expect(traveler.spentOnAgent()).to.eql(1068);      
-    expect(traveler.spentThis()).to.eql(11728);  
+    expect(spentOnTrips).to.eql(10680);
+    expect(traveler.spentOnAgent(spentOnTrips)).to.eql(1068);      
+    expect(traveler.spentInTotal()).to.eql(11748);  
   });
 });
