@@ -16,6 +16,18 @@ export default class Traveler {
     return this.pastTrips;
   }
 
+  returnCurrentTrips() {
+    return this.currentTrips;
+  }
+
+  returnUpcomingTrips() {
+    return this.upcomingTrips;
+  }
+
+  returnPendingTrips() {
+    return this.pendingTrips;
+  }
+
   test() {
     const format = 'YYYY/MM/DD';
     const m1 = moment('2010/10/20', format);
