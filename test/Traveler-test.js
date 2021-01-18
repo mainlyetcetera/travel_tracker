@@ -50,13 +50,13 @@ describe.only('a Traveler', () => {
     expect(traveler.test()).to.eql(true);
   });
 
-  it.only('should be able to say how long a list is', () => {
+  it('should be able to say how long a list is', () => {
     expect(traveler.countTrips(traveler.currentTrips)).to.eql(1);
     expect(traveler.countTrips(traveler.pastTrips)).to.eql(1);
   });
 
-  it('should be able to return the traveler\'s first name', () => {
-    const otherTraveler = new Traveler(traveler-test-data[0]);
+  it.only('should be able to return the traveler\'s first name', () => {
+    const otherTraveler = new Traveler(testTravelers[0]);
 
     expect(traveler.returnFirstName()).to.eql('Morey');
     expect(otherTraveler.returnFirstName()).to.eql('Ham');

@@ -32,6 +32,10 @@ export default class Traveler {
     return list.length;
   }
 
+  returnFirstName() {
+    return this.name.split(' ')[0];
+  }
+
   test() {
     const format = 'YYYY/MM/DD';
     const m1 = moment('2010/10/20', format);
