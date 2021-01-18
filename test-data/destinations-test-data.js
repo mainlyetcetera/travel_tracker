@@ -1,4 +1,4 @@
-export const testDestination = [
+export const testDestinations = [
   {
     "id": 1,
     "destination": "Lima, Peru",

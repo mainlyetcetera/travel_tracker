@@ -7,7 +7,7 @@ import Trip from '../src/data-handling/Trip.js';
 const expect = chai.expect;
 
 describe('a Traveler', () => {
-  let traveler, trip1, trip2, trip3, trip4, id;
+  let traveler, trip1, trip2, trip3, trip4;
 
   beforeEach(() => {
     traveler = new Traveler(testTravelers[testTravelers.length - 1]);        
@@ -15,15 +15,16 @@ describe('a Traveler', () => {
     trip2 = new Trip(testTrips[1]);    
     trip3 = new Trip(testTrips[2]);
     trip4 = new Trip(testTrips[3]);    
+
+    // the trips should know which category is approp. by date AND approved status
+    trip1.beAssigned();
+    trip2.beAssigned();
+    trip3.beAssigned();
+    trip4.beAssigned();
   });
 
   it('should be an instance of Traveler', () => {
     expect(traveler).to.be.an.instanceof(Traveler);
-  });
-
-  it('should be able to import data', () => {
-    expect(testTravelers).to.be.an('Array');
-    expect(testTrips).to.be.an('Array');
   });
 
   it('should have an appropriate constructor', () => {
@@ -37,22 +38,17 @@ describe('a Traveler', () => {
     expect(traveler.currentTrips).to.be.an('Array');
     expect(traveler.upcomingTrips).to.be.an('Array');
     expect(traveler.pendingTrips).to.be.an('Array');
-  });
-
-  beforeEach(() => {
-    id = traveler.id;
-
-    trip1.beAssigned(id, traveler.pastTrips);
-    trip2.beAssigned(id, traveler.currentTrips);
-    trip3.beAssigned(id, traveler.upcomingTrips);
-    trip4.beAssigned(id, traveler.pendingTrips);
-  });
+  });  
 
   it('should be able to return the trips', () => {
     expect(traveler.returnPastTrips()).to.deep.equal([trip1]);
     expect(traveler.returnPresentTrips()).to.deep.equal([trip2]);
     expect(traveler.returnUpcomingTrips()).to.deep.equal([trip3]);
     expect(traveler.returnPendingTrips()).to.deep.equal([trip4]);
+  });
+
+  it('should test whether moment works', () => {
+    expect(traveler.test()).to.eql(true);
   });
 
   it('should be able to say how long a list is', () => {
@@ -94,6 +90,4 @@ describe('a Traveler', () => {
     expect(traveler.spentOnAgent()).to.eql(1068);      
     expect(traveler.spentThis()).to.eql(11728);  
   });
-
-
 });
