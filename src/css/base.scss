@@ -11,8 +11,10 @@ header {
 
 .trips {
   border: $border;
-  margin-top: .2em;
+  margin: .2em .2em .2em 0;
   @include round-corners(10px);
+  // top right bottom left
+
   // border-radius: 1px;
 
   p {
