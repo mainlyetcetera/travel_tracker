@@ -1,7 +1,31 @@
 @import './variables.scss';
 @import './mixins.scss';
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
+  main {
+    display: grid;
+    grid-template-areas:
+      "past" 
+      "current"
+      "upcoming" 
+      "pending";
+  }
+
+  .past {
+    grid-area: past;
+  }
+
+  .current {
+    grid-area: current;
+  }
+
+  .upcoming {
+    grid-area: upcoming;
+  }
+
+  .pending {
+    grid-area: pending;
+  }
   .trip {
     border: $border;
     text-align: $center-alignment;
@@ -13,12 +37,46 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1400px) and (min-width: 450px) {
   main {
     display: grid;
     grid-template-areas:
       "past current"
       "upcoming pending";
+  }
+
+  .past {
+    grid-area: past;
+  }
+
+  .current {
+    grid-area: current;
+  }
+
+  .upcoming {
+    grid-area: upcoming;
+  }
+
+  .pending {
+    grid-area: pending;
+  }
+
+  .trip {
+    border: $border;
+    text-align: $center-alignment;
+    background-image: url('../images/turing-logo.png');
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    @include round-corners(5px);
+  }
+}
+
+@media (min-width: 1400px) {
+  main {
+    display: grid;
+    grid-template-areas:
+      "past current upcoming pending";
   }
 
   .past {
