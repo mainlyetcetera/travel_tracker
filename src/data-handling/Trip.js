@@ -47,6 +47,14 @@ export default class Trip {
     return this.returnStatus() === 'approved' ? true : false;
   }
 
+  setupDates() {
+    return {
+      start: moment(this.returnBeginning()),
+      end: moment(this.returnEnd()),
+      current: moment()
+    }
+  }
+
   beAssigned(traveler) {    
     const start = moment(this.returnBeginning());
     const end = moment(this.returnEnd());    
