@@ -89,22 +89,23 @@ describe('a Traveler', () => {
     expect(traveler.spentOnAgent(50000)).to.eql(5000);
   });
 
-  it.only('should return the cost of any single trip', () => {    
+  it('should return the cost of any single trip', () => {    
     expect(traveler.spentOnTrip(trip1, testDestinations)).to.eql(10650);    
   });
 
   it('should return costs of all valid trips', () => {
-    expect(traveler.spentOnTrips()).to.eql(10680);
+    expect(traveler.spentOnTrips(testDestinations)).to.eql(10680);
   });
 
   it('should return total spent on trips this year', () => {
-    // flight cost per person twice to make round-trip
-    // lodging cost per day per person per duration
+    // How cost is decided:
+      // flight cost per person twice to make round-trip
+      // lodging cost per day per person per duration
 
     const spentOnTrips = traveler.spentOnTrips(testDestinations);
     
     expect(spentOnTrips).to.eql(10680);
     expect(traveler.spentOnAgent(spentOnTrips)).to.eql(1068);      
-    expect(traveler.spentInTotal()).to.eql(11748);  
+    expect(traveler.spentInTotal(testDestinations)).to.eql(11748);  
   });
 });
