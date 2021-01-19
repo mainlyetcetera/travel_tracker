@@ -21,11 +21,12 @@ const initiateData = () => {
     .then(data => {
       travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));      
       const index = getRandomIndex(data[0].travelers);      
-      traveler = travelers[index];      
+      traveler = travelers[index];
       trips = data[1].trips.map(trip => new Trip(trip));
-      destinations = data[2].destinations;
+      destinations = data[2].destinations;      
       domUpdates.displayTravelerName(traveler);      
       populateTrips();            
+      generateTravelerGrandTotal(traveler, destinations);    
       domUpdates.displayTrips(traveler);
     })
     .catch(err => console.log(err));
@@ -33,11 +34,17 @@ const initiateData = () => {
 
 const getRandomIndex = list => Math.floor(Math.random() * list.length);
 
-const populateTrips = () => {
-  trips.forEach(trip => {
+const populateTrips = () => {  
+  trips.forEach(trip => {    
     const id = trip.findCorrespondingTraveler(travelers).id;
     id === traveler.id ? trip.beAssigned(traveler) : id;
-  });
+  });  
+}
+
+const generateTravelerGrandTotal = (traveler, destinations) => {  
+  const total = traveler.spentInTotal(destinations);
+  const totalDisplay = document.querySelector('.price-display');
+  totalDisplay.innerText = `You have spent $${total} on trips this year!`;
 }
 
 window.onload = initiateData;
