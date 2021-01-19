@@ -7,6 +7,10 @@ import Trip from './data-handling/Trip.js';
 import { getData } from '../utils/api/apiCalls.js';
 import { domUpdates } from './domUpdates.js';
 
+const dateInput = document.querySelector('.date-input');
+const durationInput = document.querySelector('.duration-input');
+const travelersInput = document.querySelector('.travelers-input');
+
 let traveler;
 let travelers;
 let trips;
@@ -24,11 +28,11 @@ const initiateData = () => {
       traveler = travelers[index];
       trips = data[1].trips.map(trip => new Trip(trip));
       destinations = data[2].destinations;      
-      domUpdates.displayDestinationOptions(destinations);
+      domUpdates.displayDestinationOptions(destinations);     
       domUpdates.displayTravelerName(traveler);      
       populateTrips();            
       generateTravelerGrandTotal(traveler, destinations);    
-      domUpdates.displayTrips(traveler);
+      domUpdates.displayTrips(traveler, destinations);
     })
     .catch(err => console.log(err));
 }
