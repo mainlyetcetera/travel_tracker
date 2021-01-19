@@ -12,9 +12,13 @@ const durationInput = document.querySelector('.duration-input');
 const travelersInput = document.querySelector('.travelers-input');
 const destinationInput = document.querySelector('.destinations-drop-down');
 const makeTripButton = document.querySelector('.make-trip');
+const loginPage = document.querySelector('.login');
 const userInput = document.querySelector('.username-input');
 const passwordInput = document.querySelector('.password-input');
+const header = document.querySelector('header');
+const main = document.querySelector('main');
 const loginButton = document.querySelector('.login-button');
+
 const body = document.querySelector('body');
 
 let traveler;
@@ -116,19 +120,12 @@ const enableLogin = () => {
   domUpdates.enableLoginButton();
 }
 
-/*
-pattern to send
-{
-  id: <number>, 
-  userID: <number>, 
-  destinationID: <number>, 
-  travelers: <number>, 
-  date: <string 'YYYY/MM/DD'>, 
-  duration: <number>, 
-  status: <string 'approved' or 'pending'>, 
-  suggestedActivities: <array of strings>
+const login = event => {
+  event.preventDefault();
+  loginPage.classList.toggle('hidden');
+  header.classList.toggle('hidden');
+  main.classList.toggle('hidden');
 }
-*/
 
 window.onload = initiateData;
 body.addEventListener('click', disableButton);
@@ -146,3 +143,4 @@ travelersInput.addEventListener('keyup', checkNumberInputs);
 durationInput.addEventListener('keyup', checkNumberInputs);
 userInput.addEventListener('keyup', enableLogin);
 passwordInput.addEventListener('keyup', enableLogin);
+loginButton.addEventListener('click', login);
