@@ -66,14 +66,25 @@ const makeTrip = event => {
   // find greatest id among trips, get next one higher
   // get traveler's id
   // get id of destination whose destination prop matches value
+  const dateValue = dateInput.value;
+  const durValue = durationInput.value;
+  const travValue = travelersInput.value;
+  const destValue = destinationInput.value;
+  console.log('destValue', destValue);
+
+  const dest = destinations.find(destination => 
+    destination.destination === destValue);
+  console.log('dest', dest);
+  const destId = dest.id;
+  console.log('id', destId);
 
   const values = {
     id: Date.now(),
     userID: traveler.id,
-    destinationID: 24,
-    travelers: 2,
-    date: '2021/04/12',
-    duration: 4,
+    destinationID: destId,
+    travelers: travValue,
+    date: dateValue,
+    duration: durValue,
     status: 'pending',
     suggestedActivities: []
   };
@@ -83,28 +94,34 @@ const makeTrip = event => {
   const promises = [sent, received];
   console.log(promises);
   Promise.all(promises)    
-    .then(data => {
-      // event.preventDefault();
-      console.log("new shit:", data[0].newTrip);
+    .then(data => {            
       const newTrip = new Trip(data[0].newTrip);      
-      trips.push(newTrip);
-      console.log('trips after add', trips);
-      // console.log('newTrip', newTrip);
-      // trips = data[1].trips.map(trip => new Trip(trip));
-      
-      // console.log('trips, should be 201:', trips);
-      populateTrips();      
-      console.log('traveler after', traveler);
+      trips.push(newTrip);      
+      populateTrips();
+      console.log('traveler after new trip:', traveler);         
       domUpdates.displayTrips(traveler, destinations);
     });
 }
 
 const enableButton = () => {
+  if (!domUpdates.checkDateInput() || !domUpdates.checkNumInput('travelers-input') || !domUpdates.checkNumInput('duration-input')) {
+    return;
+  }
   domUpdates.enableMakeTripButton();
 }
 
-const disableButton = () => {
+const disableButton = () => {  
   domUpdates.disableMakeTripButton();
+}
+
+const checkNumberInputs = () => {  
+  domUpdates.checkNumInput('date-input');
+  domUpdates.checkNumInput('duration-input');
+}
+
+const resetMakeTripButton = () => {
+  domUpdates.clearInputs();
+  domUpdates.setDisabled();
 }
 
 /*
@@ -124,10 +141,14 @@ pattern to send
 window.onload = initiateData;
 body.addEventListener('click', disableButton);
 body.addEventListener('keyup', disableButton);
-makeTripButton.addEventListener('click', disableButton);
-makeTripButton.addEventListener('click', disableButton);
+dateInput.addEventListener('keyup', disableButton);
+durationInput.addEventListener('keyup', disableButton);
+travelersInput.addEventListener('keyup', disableButton);
 makeTripButton.addEventListener('click', disableButton);
 makeTripButton.addEventListener('click', makeTrip);
+makeTripButton.addEventListener('click', resetMakeTripButton);
 dateInput.addEventListener('keyup', enableButton);
 durationInput.addEventListener('keyup', enableButton);
 travelersInput.addEventListener('keyup', enableButton);
+travelersInput.addEventListener('keyup', checkNumberInputs);
+durationInput.addEventListener('keyup', checkNumberInputs);

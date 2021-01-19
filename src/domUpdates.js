@@ -1,3 +1,6 @@
+import moment from 'moment';
+moment().format();
+
 const dateInput = document.querySelector('.date-input');
 const durationInput = document.querySelector('.duration-input');
 const travelersInput = document.querySelector('.travelers-input');
@@ -14,7 +17,7 @@ export const domUpdates = {
     const name = destination.destination;
     const list = document.querySelector(`.${listName}`);    
     const html = `
-      <article class="trip">
+      <article class="trip" tabindex=0>
         <h2 class="title">Your trip to: ${name}!</h2>
         <h3 class="count">Number of Travelers: ${trip.travelers}</h3>
         <h3 class="start-date">Start Date: ${trip.returnBeginning()}</h3>
@@ -48,18 +51,43 @@ export const domUpdates = {
     });      
   },
 
-  enableMakeTripButton() {
-    const dateReady = dateInput !== '';
-    const durationReady = durationInput !== '';
-    const travelersReady = travelersInput !== '';
+  enableMakeTripButton() {    
     if (dateInput.value !== '' && durationInput.value !== '' && travelersInput.value !== '') {
       makeTripButton.disabled = false;
     }
   },
 
   disableMakeTripButton() {
-    if (dateInput.value === '' || durationInput.value === '' || travelersInput.value === '') {
+    if (this.checkDateInput() === false || this.checkNumInput('duration-input') === false || this.checkNumInput('date-input') === false) {
       makeTripButton.disabled = true;
     }
+  },
+
+  checkDateInput() {
+    const input = dateInput.value;     
+    if (moment(input).isValid && input.length === 10) {      
+      return true;
+    } else {      
+      return false;
+    }
+  },
+
+  checkNumInput(input) {
+    const field = document.querySelector(`.${input}`);    
+    if (isNaN(parseInt(field.value))) {      
+      return false;
+    } else {      
+      return true;
+    }
+  },
+
+  clearInputs() {
+    dateInput.value = '';
+    durationInput.value = '';
+    travelersInput.value = '';
+  },
+
+  setDisabled() {
+    makeTripButton.disabled = true;
   }
 };
