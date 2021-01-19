@@ -12,6 +12,7 @@ const durationInput = document.querySelector('.duration-input');
 const travelersInput = document.querySelector('.travelers-input');
 const destinationInput = document.querySelector('.destinations-drop-down');
 const makeTripButton = document.querySelector('.make-trip');
+const body = document.querySelector('body');
 
 let traveler;
 let travelers;
@@ -102,6 +103,10 @@ const enableButton = () => {
   domUpdates.enableMakeTripButton();
 }
 
+const disableButton = () => {
+  domUpdates.disableMakeTripButton();
+}
+
 /*
 pattern to send
 {
@@ -117,6 +122,11 @@ pattern to send
 */
 
 window.onload = initiateData;
+body.addEventListener('click', disableButton);
+body.addEventListener('keyup', disableButton);
+makeTripButton.addEventListener('click', disableButton);
+makeTripButton.addEventListener('click', disableButton);
+makeTripButton.addEventListener('click', disableButton);
 makeTripButton.addEventListener('click', makeTrip);
 dateInput.addEventListener('keyup', enableButton);
 durationInput.addEventListener('keyup', enableButton);

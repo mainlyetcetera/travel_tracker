@@ -55,5 +55,11 @@ export const domUpdates = {
     if (dateInput.value !== '' && durationInput.value !== '' && travelersInput.value !== '') {
       makeTripButton.disabled = false;
     }
+  },
+
+  disableMakeTripButton() {
+    if (dateInput.value === '' || durationInput.value === '' || travelersInput.value === '') {
+      makeTripButton.disabled = true;
+    }
   }
 };
