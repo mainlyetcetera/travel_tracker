@@ -5,6 +5,9 @@ const dateInput = document.querySelector('.date-input');
 const durationInput = document.querySelector('.duration-input');
 const travelersInput = document.querySelector('.travelers-input');
 const makeTripButton = document.querySelector('.make-trip');
+const userInput = document.querySelector('.username-input');
+const passwordInput = document.querySelector('.password-input');
+const loginButton = document.querySelector('.login-button');
 
 export const domUpdates = {
   displayTravelerName(traveler) {
@@ -99,5 +102,23 @@ export const domUpdates = {
 
   setDisabled() {
     makeTripButton.disabled = true;
+  },
+
+  declareValidLogin() {
+    return userInput.value.includes('traveler') && userInput.value.length >= 9 ?
+      true : false;    
+  },
+
+  declareValidPassword() {
+    return passwordInput.value === 'travel2021' ? true : false;
+  },
+
+  enableLoginButton() {
+    const login = this.declareValidLogin();    
+    const password = this.declareValidPassword();
+    console.log('login', login, 'password', password);
+    if (login && password) {
+      loginButton.disabled = false;
+    }
   }
 };
