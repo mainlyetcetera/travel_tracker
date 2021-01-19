@@ -74,6 +74,29 @@
 }
 
 @media (min-width: 1400px) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 7fr;
+    grid-template-areas:
+      "img h1 h2 form";
+
+    h1 {
+      grid-area: h1;
+    }
+
+    img {
+      grid-area: img;
+    }
+
+    h2 {
+      grid-area: h2;
+    }
+
+    .make-trip-form {
+      grid-area: form;
+    }
+  }
+
   main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
