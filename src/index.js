@@ -28,15 +28,14 @@ const initiateData = () => {
     .then(data => {
       travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));      
       const index = getRandomIndex(data[0].travelers);      
-      traveler = travelers[index];
-      console.log('traveler init', traveler);
+      traveler = travelers[index];      
       trips = data[1].trips.map(trip => new Trip(trip));      
       destinations = data[2].destinations;      
       domUpdates.displayDestinationOptions(destinations);     
       domUpdates.displayTravelerName(traveler);      
       populateTrips();            
       generateTravelerGrandTotal(traveler, destinations);    
-      domUpdates.displayTrips(traveler, destinations);
+      domUpdates.displayTrips(traveler, destinations, travelers);
     })
     .catch(err => console.log(err));
 }
@@ -57,27 +56,15 @@ const generateTravelerGrandTotal = (traveler, destinations) => {
 }
 
 const makeTrip = event => {
-  event.preventDefault();
-  // const startDate = dateInput.value;
-  // const duration = durationInput.value;
-  // const travelers = travelersInput.value;
-  // const destination = destinationInput.value;
-
-  // find greatest id among trips, get next one higher
-  // get traveler's id
-  // get id of destination whose destination prop matches value
+  event.preventDefault();  
   const dateValue = dateInput.value;
   const durValue = durationInput.value;
   const travValue = travelersInput.value;
   const destValue = destinationInput.value;
-  console.log('destValue', destValue);
-
   const dest = destinations.find(destination => 
     destination.destination === destValue);
-  console.log('dest', dest);
-  const destId = dest.id;
-  console.log('id', destId);
 
+  const destId = dest.id;
   const values = {
     id: Date.now(),
     userID: traveler.id,
@@ -91,15 +78,13 @@ const makeTrip = event => {
 
   const sent = postData(values);
   const received = getData('trips');
-  const promises = [sent, received];
-  console.log(promises);
+  const promises = [sent, received];  
   Promise.all(promises)    
     .then(data => {            
       const newTrip = new Trip(data[0].newTrip);      
       trips.push(newTrip);      
-      populateTrips();
-      console.log('traveler after new trip:', traveler);         
-      domUpdates.displayTrips(traveler, destinations);
+      populateTrips();      
+      domUpdates.displayTrips(traveler, destinations, travelers);
     });
 }
 

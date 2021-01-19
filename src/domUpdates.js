@@ -12,7 +12,9 @@ export const domUpdates = {
     userMsg.innerText = `Welcome ${traveler.returnFirstName()}!`;
   },
 
-  createTrip(trip, listName, destinations) { // curr trip, target list
+  createTrip(trip, listName, destinations, travelers) { // curr trip, target list
+    const traveler = trip.findCorrespondingTraveler(travelers);
+    const total = traveler.spentOnTrip(trip, destinations);
     const destination = trip.findCorrespondingDestination(destinations);
     const name = destination.destination;
     const list = document.querySelector(`.${listName}`);    
@@ -22,13 +24,14 @@ export const domUpdates = {
         <h3 class="count">Number of Travelers: ${trip.travelers}</h3>
         <h3 class="start-date">Start Date: ${trip.returnBeginning()}</h3>
         <h3 class="end-date">End Date: ${trip.returnEnd()}</h3>
+        <h3 class="price">Trip Cost: ${total}</h3>
       </article>
     `;
 
     list.innerHTML += html;
   },
 
-  displayTrips(traveler, destinations) {
+  displayTrips(traveler, destinations, travelers) {
     const past = traveler.returnPastTrips();
     const current = traveler.returnCurrentTrips();
     const upcoming = traveler.returnUpcomingTrips();
@@ -43,10 +46,10 @@ export const domUpdates = {
     upcomingList.innerHTML = '<p>Trips coming up!</p>'
     pendingList.innerHTML = '<p>Trips we\'re checking for you!</p>';
 
-    past.forEach(trip => this.createTrip(trip, 'past', destinations));
-    current.forEach(trip => this.createTrip(trip, 'current', destinations));
-    upcoming.forEach(trip => this.createTrip(trip, 'upcoming', destinations));
-    pending.forEach(trip => this.createTrip(trip, 'pending', destinations));
+    past.forEach(trip => this.createTrip(trip, 'past', destinations, travelers));
+    current.forEach(trip => this.createTrip(trip, 'current', destinations, travelers));
+    upcoming.forEach(trip => this.createTrip(trip, 'upcoming', destinations, travelers));
+    pending.forEach(trip => this.createTrip(trip, 'pending', destinations, travelers));
   },
 
   displayDestinationOptions(destinations) {
