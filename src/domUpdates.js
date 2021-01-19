@@ -33,7 +33,14 @@ export const domUpdates = {
     const current = traveler.returnCurrentTrips();
     const upcoming = traveler.returnUpcomingTrips();
     const pending = traveler.returnPendingTrips();
+    const pastList = document.querySelector('.past');
+    const currentList = document.querySelector('.current');
+    const upcomingList = document.querySelector('.upcoming');
     const pendingList = document.querySelector('.pending');
+
+    pastList.innerHTML = '<p>Trips you\'ve enjoyed!</p>';
+    currentList.innerHTML = '<p>Trips you\'re on right now! Enjoy!</p>'
+    upcomingList.innerHTML = '<p>Trips coming up!</p>'
     pendingList.innerHTML = '<p>Trips we\'re checking for you!</p>';
 
     past.forEach(trip => this.createTrip(trip, 'past', destinations));
