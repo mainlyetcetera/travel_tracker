@@ -8,6 +8,7 @@ import { getData } from '../utils/api/apiCalls.js';
 import { domUpdates } from './domUpdates.js';
 
 let traveler;
+let travelers;
 let trips;
 let destinations;
 
@@ -17,18 +18,26 @@ const initiateData = () => {
   const destinationsPromise = getData('destinations');
   const promises = [travelersPromise, tripsPromise, destinationsPromise];
   Promise.all(promises)
-    .then(data => {      
+    .then(data => {
+      travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));      
       const index = getRandomIndex(data[0].travelers);      
-      traveler = new Traveler(data[0].travelers[index]);
+      traveler = travelers[index];      
       trips = data[1].trips.map(trip => new Trip(trip));
       destinations = data[2].destinations;
-      domUpdates.displayUserMsg(traveler);      
+      domUpdates.displayTravelerName(traveler);      
+      populateTrips();            
+      domUpdates.displayTrips(traveler);
     })
     .catch(err => console.log(err));
 }
 
 const getRandomIndex = list => Math.floor(Math.random() * list.length);
 
-
+const populateTrips = () => {
+  trips.forEach(trip => {
+    const id = trip.findCorrespondingTraveler(travelers).id;
+    id === traveler.id ? trip.beAssigned(traveler) : id;
+  });
+}
 
 window.onload = initiateData;
