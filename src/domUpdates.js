@@ -28,5 +28,14 @@ export const domUpdates = {
     current.forEach(trip => this.createTrip(trip, 'current'));
     upcoming.forEach(trip => this.createTrip(trip, 'upcoming'));
     pending.forEach(trip => this.createTrip(trip, 'pending'));
+  },
+
+  displayDestinationOptions(destinations) {
+    const dropDown = document.querySelector('.destinations-drop-down');    
+    destinations.forEach(destination => {
+      const name = destination.destination;      
+      const html = `<option value="${name}">${name}</option>`;
+      dropDown.innerHTML += html;
+    });      
   }
 };

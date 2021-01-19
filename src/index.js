@@ -24,6 +24,7 @@ const initiateData = () => {
       traveler = travelers[index];
       trips = data[1].trips.map(trip => new Trip(trip));
       destinations = data[2].destinations;      
+      domUpdates.displayDestinationOptions(destinations);
       domUpdates.displayTravelerName(traveler);      
       populateTrips();            
       generateTravelerGrandTotal(traveler, destinations);    
