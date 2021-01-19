@@ -63,11 +63,20 @@ export default class Trip {
         traveler.pendingTrips.push(this);      
       }
     } else if (this.approved() && dates.curr.isAfter(dates.ed)) {
-      traveler.pastTrips.push(this);
+      const isNotUnique = traveler.pastTrips.find(trip => trip.tripId === this.tripId);      
+      if (!isNotUnique) {
+        traveler.pastTrips.push(this);      
+      }      
     } else if (this.approved() && dates.curr.isBetween(dates.st, dates.ed)) {
-      traveler.currentTrips.push(this);
+      const isNotUnique = traveler.currentTrips.find(trip => trip.tripId === this.tripId);      
+      if (!isNotUnique) {
+        traveler.currentTrips.push(this);      
+      }      
     } else if (this.approved() && dates.curr.isBefore(dates.st)) {
-      traveler.upcomingTrips.push(this);
+      const isNotUnique = traveler.upcomingTrips.find(trip => trip.tripId === this.tripId);      
+      if (!isNotUnique) {
+        traveler.upcomingTrips.push(this);      
+      }            
     }
   }
 };
