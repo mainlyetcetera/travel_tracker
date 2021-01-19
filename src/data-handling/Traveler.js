@@ -66,6 +66,7 @@ export default class Traveler {
     let total = 0;
     total += (estFlightCost * 2 * trip.travelers);
     total += (estLodgingCost * trip.travelers * trip.returnDuration());
+    total += this.spentOnAgent(total);
     return total;
   }
 
