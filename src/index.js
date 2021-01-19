@@ -98,6 +98,10 @@ const makeTrip = event => {
     });
 }
 
+const enableButton = () => {
+  domUpdates.enableMakeTripButton();
+}
+
 /*
 pattern to send
 {
@@ -114,3 +118,6 @@ pattern to send
 
 window.onload = initiateData;
 makeTripButton.addEventListener('click', makeTrip);
+dateInput.addEventListener('keyup', enableButton);
+durationInput.addEventListener('keyup', enableButton);
+travelersInput.addEventListener('keyup', enableButton);

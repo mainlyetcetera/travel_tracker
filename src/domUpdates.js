@@ -1,3 +1,8 @@
+const dateInput = document.querySelector('.date-input');
+const durationInput = document.querySelector('.duration-input');
+const travelersInput = document.querySelector('.travelers-input');
+const makeTripButton = document.querySelector('.make-trip');
+
 export const domUpdates = {
   displayTravelerName(traveler) {
     const userMsg = document.querySelector('.welcome-msg');    
@@ -41,5 +46,14 @@ export const domUpdates = {
       const html = `<option value="${name}">${name}</option>`;
       dropDown.innerHTML += html;
     });      
+  },
+
+  enableMakeTripButton() {
+    const dateReady = dateInput !== '';
+    const durationReady = durationInput !== '';
+    const travelersReady = travelersInput !== '';
+    if (dateInput.value !== '' && durationInput.value !== '' && travelersInput.value !== '') {
+      makeTripButton.disabled = false;
+    }
   }
 };
