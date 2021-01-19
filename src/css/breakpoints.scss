@@ -94,6 +94,44 @@
 
     .make-trip-form {
       grid-area: form;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: 
+      "date-label  date-input dur-label dur-input"
+      "trav-label trav-input dest-label dest-menu";
+
+      #date-label {
+        grid-area: date-label;
+      }
+
+      .date-input {
+        grid-area: date-input;
+      }
+
+      #duration-label {
+        grid-area: dur-label;
+      }
+
+      .duration-input {
+        grid-area: dur-input;
+      }
+
+      #travelers-label {
+        grid-area: trav-label;
+      }
+
+      .travelers-input {
+        grid-area: trav-input;
+      }
+
+      #destinations-label {
+        grid-area: dest-label;
+      }
+
+      .destinations-drop-down {
+        grid-area: dest-menu;
+      }
     }
   }
 
