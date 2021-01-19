@@ -25,6 +25,8 @@ export const domUpdates = {
     const current = traveler.returnCurrentTrips();
     const upcoming = traveler.returnUpcomingTrips();
     const pending = traveler.returnPendingTrips();
+    const pendingList = document.querySelector('.pending');
+    pendingList.innerHTML = '';
 
     past.forEach(trip => this.createTrip(trip, 'past', destinations));
     current.forEach(trip => this.createTrip(trip, 'current', destinations));
