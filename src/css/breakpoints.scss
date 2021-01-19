@@ -76,16 +76,12 @@
 @media (min-width: 1400px) {
   header {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 7fr;
+    grid-template-columns: 3fr 2fr 7fr;
     grid-template-areas:
-      "img h1 h2 form";
+      "h1 h2 form";
 
     h1 {
       grid-area: h1;
-    }
-
-    img {
-      grid-area: img;
     }
 
     h2 {
@@ -95,11 +91,11 @@
     .make-trip-form {
       grid-area: form;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       grid-template-areas: 
-      "date-label  date-input dur-label dur-input"
-      "trav-label trav-input dest-label dest-menu";
+      "date-label  date-input dur-label dur-input btn"
+      "trav-label trav-input dest-label dest-menu btn";
 
       #date-label {
         grid-area: date-label;
@@ -132,6 +128,10 @@
       .destinations-drop-down {
         grid-area: dest-menu;
       }
+
+      .make-trip {
+        grid-area: btn;
+      }
     }
   }
 
@@ -160,8 +160,7 @@
 
   .trip {
     border: $border;
-    text-align: $center-alignment;
-    background-image: url('../images/turing-logo.png');
+    text-align: $center-alignment;    
     margin-left: 3px;
     margin-right: 3px;
     margin-bottom: 3px;
