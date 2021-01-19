@@ -11,7 +11,7 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  background-color: #472828; 
+  background-color: $body-color;
 }
 
 .login {
@@ -36,25 +36,27 @@ body {
   }
   
   .username-input {
+    color: $inner-text-color;
     grid-area: ui;
   }
 
-  .pass-label {
+  .pass-label {    
     grid-area: pal;
   }
 
-  .password-label {
+  .password-input {
+    color: $inner-text-color;
     grid-area: psl;
   }
 
   .login-button {
     grid-area: btn;
+    color: $inner-text-color;
   }
   
 }
 
-header {
-  background: $primary-background;
+header {  
   border: $border;
   @include round-corners(10px);
 }
@@ -72,3 +74,36 @@ header {
     text-align: $center-alignment;
   }
 }
+
+.make-trip-form {
+
+  input {
+    color: $inner-text-color
+  }
+
+  select {
+    @extend input;
+  }
+
+  option {
+    @extend input;
+  }
+
+  button {
+    @extend input;
+  }
+}
+
+// .date-input {
+//   color: $inner-text-color;
+// }
+
+// .destinations-drop-down {
+//   @extend .date-input;
+// }
+
+// .travelers-input {
+//   @extend .date-input;
+// }
+
+// .
