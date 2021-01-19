@@ -3,6 +3,56 @@
 @import './variables.scss';
 @import './mixins.scss';
 
+* {
+  color: #7fffd4;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: #472828; 
+}
+
+.login {
+  border: $border;
+  @include round-corners(5px);
+  height: 150px;
+  width: 400px;
+  margin-top: 300px;
+}
+
+.login-form {    
+  display: grid;    
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "ul ui"
+    "pal psl"
+    "btn btn";
+
+  .user-label {
+    grid-area: ul;
+  }
+  
+  .username-input {
+    grid-area: ui;
+  }
+
+  .pass-label {
+    grid-area: pal;
+  }
+
+  .password-label {
+    grid-area: psl;
+  }
+
+  .login-button {
+    grid-area: btn;
+  }
+  
+}
+
 header {
   background: $primary-background;
   border: $border;
@@ -17,10 +67,7 @@ header {
   border: $border;
   margin: .2em .2em .2em 0;
   @include round-corners(10px);
-  // top right bottom left
-
-  // border-radius: 1px;
-
+  
   p {
     text-align: $center-alignment;
   }
