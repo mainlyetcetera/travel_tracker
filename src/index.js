@@ -28,7 +28,8 @@ const initiateData = () => {
       travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));      
       const index = getRandomIndex(data[0].travelers);      
       traveler = travelers[index];
-      trips = data[1].trips.map(trip => new Trip(trip));
+      console.log('traveler init', traveler);
+      trips = data[1].trips.map(trip => new Trip(trip));      
       destinations = data[2].destinations;      
       domUpdates.displayDestinationOptions(destinations);     
       domUpdates.displayTravelerName(traveler);      
@@ -67,7 +68,7 @@ const makeTrip = event => {
 
   const values = {
     id: Date.now(),
-    userID: 23,
+    userID: traveler.id,
     destinationID: 24,
     travelers: 2,
     date: '2021/04/12',
@@ -81,7 +82,20 @@ const makeTrip = event => {
   const promises = [sent, received];
   console.log(promises);
   Promise.all(promises)    
-    .then(data => console.log(data));
+    .then(data => {
+      // event.preventDefault();
+      console.log("new shit:", data[0].newTrip);
+      const newTrip = new Trip(data[0].newTrip);      
+      trips.push(newTrip);
+      console.log('trips after add', trips);
+      // console.log('newTrip', newTrip);
+      // trips = data[1].trips.map(trip => new Trip(trip));
+      
+      // console.log('trips, should be 201:', trips);
+      populateTrips();      
+      console.log('traveler after', traveler);
+      domUpdates.displayTrips(traveler, destinations);
+    });
 }
 
 /*
