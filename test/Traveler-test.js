@@ -1,6 +1,7 @@
 import chai from 'chai';
 import { testTravelers } from '../test-data/traveler-test-data.js';
 import { testTrips } from '../test-data/trip-test-data.js';
+import { testDestinations } from '../test-data/destinations-test-data.js';
 import Traveler from '../src/data-handling/Traveler.js';
 import Trip from '../src/data-handling/Trip.js';
 
@@ -86,6 +87,10 @@ describe('a Traveler', () => {
   it('should return 10% of a given total', () => {
     expect(traveler.spentOnAgent(100)).to.eql(10);
     expect(traveler.spentOnAgent(50000)).to.eql(5000);
+  });
+
+  it.only('should return the cost of any single trip', () => {    
+    expect(traveler.spentOnTrip(trip1, testDestinations)).to.eql(10650);    
   });
 
   it('should return costs of all valid trips', () => {
