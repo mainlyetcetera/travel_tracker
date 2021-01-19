@@ -96,7 +96,7 @@ describe('a Traveler', () => {
     // flight cost per person twice to make round-trip
     // lodging cost per day per person per duration
 
-    const spentOnTrips = traveler.spentOnTrips();
+    const spentOnTrips = traveler.spentOnTrips(testDestinations);
     
     expect(spentOnTrips).to.eql(10680);
     expect(traveler.spentOnAgent(spentOnTrips)).to.eql(1068);      

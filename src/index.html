@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta charset="utf-8">
+    <title>Trackin' da Travelin'</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sulphur+Point:400,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/turing-logo.png" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    <header>
+      <h1 class="welcome-msg"></h1>
+      <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+      <h2 class="price-display">Looks like you haven't had a trip in a while!</h2>
+    </header>
+    <main>
+      <section class="trips past">
+        <p>Trips you've enjoyed!</p>        
+      </section>
+      <section class="trips current">
+        <p>Trips you're on right now! Enjoy!</p>        
+      </section>
+      <section class="trips upcoming">
+        <p>Trips coming up!</p>
+      </section>
+      <section class="trips pending">
+        <p>Trips we're checking for you!</p>
+      </section>
+    </main>    
   </body>
 </html>

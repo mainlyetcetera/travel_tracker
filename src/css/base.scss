@@ -1,7 +1,23 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import './breakpoints.scss';
+@import './variables.scss';
+@import './mixins.scss';
 
-body {
+header {
   background: $primary-background;
+  border: $border;
+  @include round-corners(10px);
+}
+
+.trips {
+  border: $border;
+  margin: .2em .2em .2em 0;
+  @include round-corners(10px);
+  // top right bottom left
+
+  // border-radius: 1px;
+
+  p {
+    text-align: $center-alignment;
+  }
 }
