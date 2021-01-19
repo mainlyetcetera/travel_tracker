@@ -58,7 +58,10 @@ export default class Trip {
   beAssigned(traveler) {    
     const dates = this.setupDates();
     if (!this.approved()) {
-      traveler.pendingTrips.push(this);
+      const isNotUnique = traveler.pendingTrips.find(trip => trip.tripId === this.tripId);      
+      if (!isNotUnique) {
+        traveler.pendingTrips.push(this);      
+      }
     } else if (this.approved() && dates.curr.isAfter(dates.ed)) {
       traveler.pastTrips.push(this);
     } else if (this.approved() && dates.curr.isBetween(dates.st, dates.ed)) {
