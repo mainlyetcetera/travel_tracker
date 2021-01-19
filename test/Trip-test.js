@@ -83,7 +83,7 @@ describe('a Trip', () => {
     expect(trip.setupDates()).to.deep.eql(dates);
   });
 
-  it('should add itself to the appropriate list of the Traveler', () => {    
+  it.only('should add itself to the appropriate list of the Traveler', () => {    
     const trip2 = new Trip(testTrips[1]);
     const trip3 = new Trip(testTrips[2]);
     trip1 = new Trip(testTrips[3]);    
@@ -91,11 +91,18 @@ describe('a Trip', () => {
     trip.beAssigned(traveler);
     trip1.beAssigned(traveler);
     trip2.beAssigned(traveler);
-    trip3.beAssigned(traveler);        
+    trip3.beAssigned(traveler);      
     
     expect(traveler.pastTrips).to.deep.eql([trip]);
     expect(traveler.currentTrips).to.deep.eql([trip2]);
     expect(traveler.upcomingTrips).to.deep.eql([trip3]);    
     expect(traveler.pendingTrips).to.deep.eql([trip1]);
-  });  
+  });
+
+  it.only('should only add unique trips to a traveler\'s list', () => {
+    trip1.beAssigned(traveler);
+    trip1.beAssigned(traveler);
+
+    expect(traveler.pendingTrips).to.deep.eql([trip1]);
+  });
 });
