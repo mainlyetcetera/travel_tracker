@@ -69,12 +69,12 @@ export default class Traveler {
     return total;
   }
 
-  spentOnTrips(listOfDestinations) {
+  spentOnTrips(listOfDestinations) {    
     const validPast = this.returnValidTrips(this.returnPastTrips());
     const validCurrent = this.returnValidTrips(this.returnCurrentTrips());
     const validUpcoming = this.returnValidTrips(this.returnUpcomingTrips());
     const valid = [...validPast, ...validCurrent, ...validUpcoming];        
-    return valid.length > 0 ? valid.reduce((total, trip) => {
+    return valid.length > 0 ? valid.reduce((total, trip) => {      
       const destination = trip.findCorrespondingDestination(listOfDestinations);      
       const estFlightCost = destination.estimatedFlightCostPerPerson;
       const estLodgingCost = destination.estimatedLodgingCostPerDay;
