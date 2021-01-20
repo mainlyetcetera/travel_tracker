@@ -90,7 +90,7 @@ describe('a Traveler', () => {
   });
 
   it('should return the cost of any single trip', () => {    
-    expect(traveler.spentOnTrip(trip1, testDestinations)).to.eql(10650);    
+    expect(traveler.spentOnTrip(trip1, testDestinations)).to.eql(11715);    
   });
 
   it('should return costs of all valid trips', () => {
