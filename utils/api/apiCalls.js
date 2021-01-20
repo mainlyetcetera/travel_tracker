@@ -1,7 +1,7 @@
-export const getData = dataset => {
-  return fetch(`http://localhost:3001/api/v1/${dataset}`)
+export const getData = endpoint => {
+  return fetch(`http://localhost:3001/api/v1/${endpoint}`)
     .then(response => response.ok ? response.json() 
-      : console.log(`Uh oh, something went wrong loading ${dataset}! Error: ${response.status}, ${response.statusText}`));
+      : console.log(`Uh oh, something went wrong loading ${endpoint}! Error: ${response.status}, ${response.statusText}`));
 }
 
 export const postData = toSend => {

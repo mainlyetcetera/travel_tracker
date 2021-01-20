@@ -26,16 +26,20 @@ let travelers;
 let trips;
 let destinations;
 
-const initiateData = () => {
+const initiateData = event => {
+  event.preventDefault();
+  const input = userInput.value;
+  const id = separateIdNum(input);
   const travelersPromise = getData('travelers');
   const tripsPromise = getData('trips');
   const destinationsPromise = getData('destinations');
-  const promises = [travelersPromise, tripsPromise, destinationsPromise];
+  const travelerPromise = getData(`travelers/${id}`);  
+  
+  const promises = [travelersPromise, tripsPromise, destinationsPromise, travelerPromise];
   Promise.all(promises)
     .then(data => {
-      travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));      
-      const index = getRandomIndex(data[0].travelers);      
-      traveler = travelers[index];      
+      travelers = data[0].travelers.map(dataPiece => new Traveler(dataPiece));         
+      traveler = new Traveler(data[3]);      
       trips = data[1].trips.map(trip => new Trip(trip));      
       destinations = data[2].destinations;      
       domUpdates.displayDestinationOptions(destinations);     
@@ -47,7 +51,7 @@ const initiateData = () => {
     .catch(err => console.log(err));
 }
 
-const getRandomIndex = list => Math.floor(Math.random() * list.length);
+const separateIdNum = input => input.slice(8);
 
 const populateTrips = () => {  
   trips.forEach(trip => {    
@@ -127,7 +131,6 @@ const login = event => {
   main.classList.toggle('hidden');
 }
 
-window.onload = initiateData;
 body.addEventListener('click', disableButton);
 body.addEventListener('keyup', disableButton);
 dateInput.addEventListener('keyup', disableButton);
@@ -143,4 +146,5 @@ travelersInput.addEventListener('keyup', checkNumberInputs);
 durationInput.addEventListener('keyup', checkNumberInputs);
 userInput.addEventListener('keyup', enableLogin);
 passwordInput.addEventListener('keyup', enableLogin);
+loginButton.addEventListener('click', initiateData);
 loginButton.addEventListener('click', login);

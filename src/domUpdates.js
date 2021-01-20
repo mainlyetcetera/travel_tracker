@@ -115,8 +115,7 @@ export const domUpdates = {
 
   enableLoginButton() {
     const login = this.declareValidLogin();    
-    const password = this.declareValidPassword();
-    console.log('login', login, 'password', password);
+    const password = this.declareValidPassword();    
     if (login && password) {
       loginButton.disabled = false;
     }
