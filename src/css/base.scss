@@ -9,6 +9,10 @@ header {
   @include round-corners(10px);
 }
 
+.hidden {
+  display: none;
+}
+
 .trips {
   border: $border;
   margin: .2em .2em .2em 0;
