@@ -8,11 +8,13 @@ import moment from 'moment';
 moment().format();
 
 describe('a Trip', () => {
-  let trip, trip1, traveler, destination;
+  let trip, trip1, trip2, trip3, traveler, destination;
 
   beforeEach(() => {
     trip = new Trip(testTrips[0]);    
     trip1 = new Trip(testTrips[3]);
+    trip2 = new Trip(testTrips[1]);
+    trip3 = new Trip(testTrips[2]);
     traveler = new Traveler(testTravelers[testTravelers.length - 1]);    
     destination = {
       "id": 1,
@@ -83,19 +85,31 @@ describe('a Trip', () => {
     expect(trip.setupDates()).to.deep.eql(dates);
   });
 
-  it('should add itself to the appropriate list of the Traveler', () => {    
-    const trip2 = new Trip(testTrips[1]);
-    const trip3 = new Trip(testTrips[2]);
-    trip1 = new Trip(testTrips[3]);    
-    
+  it('should add itself to the appropriate list of the Traveler', () => {   
     trip.beAssigned(traveler);
     trip1.beAssigned(traveler);
     trip2.beAssigned(traveler);
-    trip3.beAssigned(traveler);        
+    trip3.beAssigned(traveler);      
     
     expect(traveler.pastTrips).to.deep.eql([trip]);
     expect(traveler.currentTrips).to.deep.eql([trip2]);
     expect(traveler.upcomingTrips).to.deep.eql([trip3]);    
     expect(traveler.pendingTrips).to.deep.eql([trip1]);
-  });  
+  });
+
+  it('should only add unique trips to a traveler\'s list', () => {
+    trip.beAssigned(traveler);
+    trip.beAssigned(traveler);
+    trip1.beAssigned(traveler);
+    trip1.beAssigned(traveler);
+    trip2.beAssigned(traveler);
+    trip2.beAssigned(traveler);
+    trip3.beAssigned(traveler);
+    trip3.beAssigned(traveler);
+
+    expect(traveler.pastTrips).to.deep.eql([trip]);
+    expect(traveler.currentTrips).to.deep.eql([trip2]);
+    expect(traveler.upcomingTrips).to.deep.eql([trip3]);    
+    expect(traveler.pendingTrips).to.deep.eql([trip1]);
+  });
 });
