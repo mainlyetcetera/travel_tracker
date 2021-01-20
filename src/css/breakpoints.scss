@@ -74,67 +74,6 @@
 }
 
 @media (min-width: 1400px) {
-  header {
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr 7fr;
-    grid-template-areas:
-      "img h1 h2 form";
-
-    h1 {
-      grid-area: h1;
-    }
-
-    img {
-      grid-area: img;
-    }
-
-    h2 {
-      grid-area: h2;
-    }
-
-    .make-trip-form {
-      grid-area: form;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas: 
-      "date-label  date-input dur-label dur-input"
-      "trav-label trav-input dest-label dest-menu";
-
-      #date-label {
-        grid-area: date-label;
-      }
-
-      .date-input {
-        grid-area: date-input;
-      }
-
-      #duration-label {
-        grid-area: dur-label;
-      }
-
-      .duration-input {
-        grid-area: dur-input;
-      }
-
-      #travelers-label {
-        grid-area: trav-label;
-      }
-
-      .travelers-input {
-        grid-area: trav-input;
-      }
-
-      #destinations-label {
-        grid-area: dest-label;
-      }
-
-      .destinations-drop-down {
-        grid-area: dest-menu;
-      }
-    }
-  }
-
   main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -160,8 +99,7 @@
 
   .trip {
     border: $border;
-    text-align: $center-alignment;
-    background-image: url('../images/turing-logo.png');
+    text-align: $center-alignment;    
     margin-left: 3px;
     margin-right: 3px;
     margin-bottom: 3px;

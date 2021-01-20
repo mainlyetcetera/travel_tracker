@@ -3,8 +3,121 @@
 @import './variables.scss';
 @import './mixins.scss';
 
+* {
+  color: #7fffd4;
+}
+
 header {
-  background: $primary-background;
+  display: grid;
+  grid-template-columns: 3fr 2fr 7fr;
+  grid-template-areas:
+    "h1 h2 form";
+
+  h1 {
+    grid-area: h1;
+  }
+
+  h2 {
+    grid-area: h2;
+  }
+
+  .make-trip-form {
+    grid-area: form;
+    display: grid;
+    grid-template-columns: .7fr 1.3fr .7fr 1.3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "date-label  date-input dur-label dur-input btn"
+    "trav-label trav-input dest-label dest-menu btn";
+
+    #date-label {
+      grid-area: date-label;
+    }
+
+    .date-input {
+      grid-area: date-input;
+    }
+
+    #duration-label {
+      grid-area: dur-label;
+    }
+
+    .duration-input {
+      grid-area: dur-input;
+    }
+
+    #travelers-label {
+      grid-area: trav-label;
+    }
+
+    .travelers-input {
+      grid-area: trav-input;
+    }
+
+    #destinations-label {
+      grid-area: dest-label;
+    }
+
+    .destinations-drop-down {
+      grid-area: dest-menu;
+    }
+
+    .make-trip {
+      grid-area: btn;
+    }
+  }
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: $body-color;
+}
+
+.login {
+  border: $border;
+  @include round-corners(5px);
+  height: 150px;
+  width: 400px;
+  margin-top: 300px;
+}
+
+.login-form {    
+  display: grid;    
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "ul ui"
+    "pal psl"
+    "btn btn";
+
+  .user-label {
+    grid-area: ul;
+  }
+  
+  .username-input {
+    color: $inner-text-color;
+    grid-area: ui;
+  }
+
+  .pass-label {    
+    grid-area: pal;
+  }
+
+  .password-input {
+    color: $inner-text-color;
+    grid-area: psl;
+  }
+
+  .login-button {
+    grid-area: btn;
+    color: $inner-text-color;
+  }
+  
+}
+
+header {  
   border: $border;
   @include round-corners(10px);
 }
@@ -17,11 +130,41 @@ header {
   border: $border;
   margin: .2em .2em .2em 0;
   @include round-corners(10px);
-  // top right bottom left
-
-  // border-radius: 1px;
-
+  
   p {
     text-align: $center-alignment;
   }
 }
+
+.make-trip-form {
+
+  input {
+    color: $inner-text-color
+  }
+
+  select {
+    @extend input;
+  }
+
+  option {
+    @extend input;
+  }
+
+  button {
+    @extend input;
+  }
+}
+
+// .date-input {
+//   color: $inner-text-color;
+// }
+
+// .destinations-drop-down {
+//   @extend .date-input;
+// }
+
+// .travelers-input {
+//   @extend .date-input;
+// }
+
+// .

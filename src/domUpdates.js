@@ -27,7 +27,7 @@ export const domUpdates = {
         <h3 class="count">Number of Travelers: ${trip.travelers}</h3>
         <h3 class="start-date">Start Date: ${trip.returnBeginning()}</h3>
         <h3 class="end-date">End Date: ${trip.returnEnd()}</h3>
-        <h3 class="price">Trip Cost: ${total}</h3>
+        <h3 class="price">Trip Cost: $${total}</h3>
       </article>
     `;
 
